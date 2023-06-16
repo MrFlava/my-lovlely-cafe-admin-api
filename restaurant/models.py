@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 WEEKDAYS = [
   (1, "Monday"),
@@ -17,6 +18,8 @@ class Restaurant(models.Model):
     weekday = models.IntegerField(choices=WEEKDAYS)
     from_hour = models.TimeField()
     to_hour = models.TimeField()
+
+    administrator = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         ordering = ('weekday', 'from_hour')
