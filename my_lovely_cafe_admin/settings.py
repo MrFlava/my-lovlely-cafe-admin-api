@@ -38,6 +38,9 @@ INSTALLED_APPS = [
 
     # third-party modules
     'rest_framework',
+
+    # apps
+    'restaurant'
 ]
 
 MIDDLEWARE = [
