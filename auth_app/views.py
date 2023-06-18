@@ -80,7 +80,7 @@ class LogoutView(APIView):
 
         logout(request)
 
-        return Response({"detail": _("Successfully logged out.")},
+        return Response({"detail": "Successfully logged out."},
                         status=status.HTTP_200_OK)
 
 

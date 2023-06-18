@@ -95,12 +95,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserDetailsSerializer(serializers.ModelSerializer):
-    full_name = serializers.SerializerMethodField(read_only=True)
-
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'full_name', 'address')
-        read_only_fields = ('email', 'full_name', 'address')
+        fields = ('id', 'username', 'email', 'first_name', 'last_name')
+        read_only_fields = ('email',)
 
 
 class JWTSerializer(serializers.Serializer):
