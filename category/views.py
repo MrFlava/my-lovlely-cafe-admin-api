@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import RetrieveAPIView, CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -19,6 +20,9 @@ class CategoryListView(ListAPIView):
     permission_classes = (IsAuthenticated, )
     authentication_classes = (TokenAuthentication,)
     serializer_class = CategorySerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["name", ]
 
     def get_queryset(self):
         restaurant = Restaurant.objects.get(administrator=self.request.user)

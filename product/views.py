@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import RetrieveAPIView, CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -18,6 +19,9 @@ class ProductListView(ListAPIView):
     queryset = Product.objects.all()
     permission_classes = (AllowAny, )
     serializer_class = ProductSerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["name", "price", "category"]
 
 
 class ProductRetrieveView(RetrieveAPIView):
