@@ -15,7 +15,6 @@ class ProductCreateView(CreateAPIView):
 
 
 class ProductListView(ListAPIView):
-    authentication_classes = (TokenAuthentication,)
     serializer_class = ProductSerializer
 
 
