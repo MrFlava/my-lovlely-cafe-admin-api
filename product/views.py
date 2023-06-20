@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import RetrieveAPIView, CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
 from auth_app.authentication import TokenAuthentication
@@ -15,6 +15,8 @@ class ProductCreateView(CreateAPIView):
 
 
 class ProductListView(ListAPIView):
+    queryset = Product.objects.all()
+    permission_classes = (AllowAny, )
     serializer_class = ProductSerializer
 
 
