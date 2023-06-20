@@ -11,7 +11,7 @@ class RestaurantSerializer(ModelSerializer):
 
     def create(self, validated_data):
         data = validated_data.copy()
-        data['administrator'] = self.context['request'].user
+        data["administrator"] = self.context["request"].user
 
         return super().create(data)
 
