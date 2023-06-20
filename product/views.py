@@ -1,11 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.generics import (
-    RetrieveAPIView,
-    CreateAPIView,
-    ListAPIView,
-    UpdateAPIView,
-    DestroyAPIView
-)
+from rest_framework.generics import RetrieveAPIView, CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -21,7 +15,6 @@ class ProductCreateView(CreateAPIView):
 
 
 class ProductListView(ListAPIView):
-    permission_classes = (IsAuthenticated, )
     authentication_classes = (TokenAuthentication,)
     serializer_class = ProductSerializer
 
