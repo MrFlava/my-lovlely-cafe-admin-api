@@ -1,4 +1,5 @@
 from django.db.utils import IntegrityError
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView, CreateAPIView, UpdateAPIView
@@ -31,7 +32,7 @@ class RestaurantRetrieveView(RetrieveAPIView):
     serializer_class = RestaurantSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        restaurant_info = Restaurant.objects.get(administrator=request.user)
+        restaurant_info = get_object_or_404(Restaurant, administrator=request.user)
 
         serializer = self.get_serializer(restaurant_info)
         return Response(serializer.data)
@@ -41,4 +42,3 @@ class RestaurantUpdateView(RestaurantMixin, UpdateAPIView):
     permission_classes = (IsAuthenticated, )
     authentication_classes = (TokenAuthentication,)
     serializer_class = RestaurantUpdateSerializer
-    lookup_field = 'pk'

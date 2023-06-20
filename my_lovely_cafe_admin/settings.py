@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     # apps
     'restaurant',
+    'category',
+    'product',
     'auth_app',
 ]
 

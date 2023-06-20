@@ -25,29 +25,3 @@ class Restaurant(models.Model):
         ordering = ('weekday', 'from_hour')
         unique_together = ('weekday', 'from_hour', 'to_hour')
 
-
-class Category(models.Model):
-    name = models.CharField(max_length=250)
-
-    restaurant = models.ForeignKey(Restaurant, related_name="categories", on_delete=models.CASCADE)
-
-
-class Product(models.Model):
-    name = models.CharField(max_length=250)
-    price = models.FloatField(default=0.0)
-    recipe = models.TextField()
-
-    category = models.ForeignKey(Category, related_name="products", on_delete=models.CASCADE)
-
-
-class Ingredient(models.Model):
-    name = models.CharField(max_length=250)
-    is_spicy = models.BooleanField(default=False)
-
-
-class ProductIngredient(models.Model):
-    amount = models.IntegerField(default=0)
-
-    product = models.ForeignKey(Product, related_name="product_ingredients", on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(Ingredient, related_name="product_ingredients", on_delete=models.CASCADE)
-

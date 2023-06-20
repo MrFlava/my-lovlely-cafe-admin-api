@@ -1,6 +1,10 @@
 from django.urls import path
 
-from restaurant.views import RestaurantCreateView, RestaurantRetrieveView, RestaurantUpdateView
+from restaurant.views import (
+    RestaurantCreateView,
+    RestaurantRetrieveView,
+    RestaurantUpdateView,
+)
 
 app_name = "restaurant"
 
