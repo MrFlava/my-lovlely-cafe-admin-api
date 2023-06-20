@@ -34,6 +34,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=250)
+    price = models.FloatField(default=0.0)
     recipe = models.TextField()
 
     category = models.ForeignKey(Category, related_name="products", on_delete=models.CASCADE)
