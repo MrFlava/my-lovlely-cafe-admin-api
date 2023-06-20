@@ -16,12 +16,14 @@ class ProductCreateView(CreateAPIView):
 
 
 class ProductListView(ListAPIView):
-    queryset = Product.objects.all()
     permission_classes = (AllowAny, )
     serializer_class = ProductSerializer
 
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["name", "price", "category"]
+
+    def get_queryset(self):
+        return Product.objects.filter(category__restaurant_id=self.kwargs["restaurant_id"])
 
 
 class ProductRetrieveView(RetrieveAPIView):
